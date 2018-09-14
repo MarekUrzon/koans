@@ -14,11 +14,15 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  triangle_sides = [a, b, c]
+  a, b, c = [a, b, c].sort
 
-  if triangle_sides.uniq.size == 1
+  if a <= 0 || c >= b + a
+    raise TriangleError
+  end
+
+  if [a, b, c].uniq.size == 1
     :equilateral
-  elsif triangle_sides.detect{ |s| triangle_sides.count(s) == 2 }
+  elsif [a, b, c].detect{ |s| [a, b, c].count(s) == 2 }
     :isosceles
   else
     :scalene
